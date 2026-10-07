@@ -1,0 +1,77 @@
+{
+  "name": "RAF Lead to HubSpot",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "email": "={{ $json.body.email }}",
+        "additionalFields": {
+          "companyName": "={{ $json.body.company }}",
+          "firstName": "={{ $json.body.first_name }}",
+          "lastName": "={{ $json.body.last_name }}",
+          "message": "={{ $json.body.message }}",
+          "phoneNumber": "={{ $json.body.phone }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "cf488f66-4fde-4a26-b26c-9b448329ff88",
+      "name": "Create or update a contact",
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "REPLACE_ME",
+          "name": "REPLACE_ME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "raf-lead",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6d4dd309-1e01-47f5-b633-b7fbbb7bf538",
+      "name": "Webhook",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_ME",
+          "name": "REPLACE_ME"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create or update a contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "REPLACE_WITH_ERROR_WORKFLOW_ID",
+    "callerPolicy": "workflowsFromSameOwner"
+  }
+}

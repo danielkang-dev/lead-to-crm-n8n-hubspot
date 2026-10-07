@@ -1,0 +1,56 @@
+{
+  "name": "Error Handler Discord",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ce708c0b-6f73-4e0e-82ad-4f02726d633c",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "=🔴 **n8n failure — {{ $json.workflow.name }}**\n\nFailed at: `{{ $json.execution.lastNodeExecuted || 'unknown node' }}`\nError: {{ $json.execution.error?.message || 'no message returned' }}\nMode: {{ $json.execution.mode }}\n\nhttp://YOUR_N8N_HOST:5679/workflow/{{ $json.workflow.id }}/executions/{{ $json.execution.id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "157d7f3e-bd8a-47c2-817b-33e58fcf8c21",
+      "name": "Discord",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "REPLACE_ME",
+          "name": "REPLACE_ME"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  }
+}
