@@ -8,6 +8,10 @@ Built for Rise Above Finance, a financial advisory firm whose site had no enquir
 
 This repo is a showcase copy. It holds the automation only (not the website), and credentials and server addresses are placeholders.
 
+![Proof panel: successful n8n runs, the HubSpot contact created, and the Discord alert from a forced failure](docs/end-to-end-test.png)
+
+*One test submission end to end: the runs, the HubSpot contact it created and the alert from a forced failure (test instance).*
+
 ## What it does
 
 ```mermaid
